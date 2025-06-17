@@ -1,6 +1,10 @@
 package prueba2;
 
+import java.util.Random;
+
 public class Entidad {
+	Random rn = new Random();
+	
 	private int hp = 0;
 	private int mp = 0;
 	private int exp = 0;
@@ -67,5 +71,11 @@ public class Entidad {
 	
 	public void mover(int x, int y) {
 		System.out.println("X: " + x + " Y: " + y);
+	}
+	
+	public int dropeo() {
+		System.out.println("Random \n");
+		int probabilidad = rn.nextInt();
+		return probabilidad;
 	}
 }
