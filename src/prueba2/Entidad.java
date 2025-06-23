@@ -12,6 +12,8 @@ public class Entidad {
 	private boolean estaVivo = true;
 	private int daño = 0;
 	
+		
+			
 	public Entidad(int hp, int mp, int exp, int nivel, int daño) {
 		super();
 		this.hp = hp;
@@ -19,6 +21,7 @@ public class Entidad {
 		this.exp = exp;
 		this.nivel = nivel;
 		this.daño = daño;
+		this.estaVivo = true;
 	}
 
 	public int getHp() {
@@ -78,4 +81,17 @@ public class Entidad {
 		int probabilidad = rn.nextInt();
 		return probabilidad;
 	}
+	
+	public void atacar (Enemy objetivo) {
+		 if (this.estaVivo && objetivo.isEstaVivo()) {
+		System.out.println("atacando con " + this.daño + "de dano");
+		 int nuevoHp = objetivo.getHp() - this.daño;
+	}
+	
+	
+	
+	}
+	
 }
+	
+
