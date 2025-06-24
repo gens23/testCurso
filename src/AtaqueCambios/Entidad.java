@@ -4,16 +4,14 @@ import java.util.Random;
 
 public class Entidad {
 	Random rn = new Random();
-	
+
 	private int hp = 0;
 	private int mp = 0;
 	private int exp = 0;
 	private int nivel = 0;
 	private boolean estaVivo = true;
 	private int daño = 0;
-	
-		
-			
+
 	public Entidad(int hp, int mp, int exp, int nivel, int daño) {
 		super();
 		this.hp = hp;
@@ -71,27 +69,26 @@ public class Entidad {
 	public void setDaño(int daño) {
 		this.daño = daño;
 	}
-	
+
 	public void mover(int x, int y) {
 		System.out.println("X: " + x + " Y: " + y);
 	}
-	
+
 	public int dropeo() {
 		System.out.println("Random \n");
 		int probabilidad = rn.nextInt();
 		return probabilidad;
 	}
-	
-	public void atacar (Enemy objetivo) {
-		 if (this.estaVivo && objetivo.isEstaVivo()) {
-		System.out.println("atacando con " + this.daño + "de dano");
-		 int nuevoHp = objetivo.getHp() - this.daño;
-	}
-	
-	
-	
-	}
-	
-}
-	
 
+	public void atacar(Entidad objetivo) {
+		if(!objetivo.getClass().getSimpleName().equals("Npc")) {
+			if (this.estaVivo && objetivo.isEstaVivo()) {
+				System.out.println("atacando con " + this.daño + "de dano");
+				int nuevoHp = objetivo.getHp() - this.daño;
+				System.out.println("nuevoHP " + nuevoHp );
+			}
+		} else {
+			System.out.println("No puedes atacar npc");
+		}
+	}
+}

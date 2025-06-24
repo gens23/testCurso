@@ -14,12 +14,12 @@ public class Enviroment {
 		Entidad npc = new Npc(0, 0, 0, 0, 0);
 		
 		Entidad atacante = new Player(50,20,0,1,10);
-		Entidad victima = new Enemy(30,20,0,1,10);
-		atacante.atacar(objetivo);
+		
+		Entidad objetivo = new Enemy(30,20,0,1,10);
+		
+		atacante.atacar(npc);
 		
 		System.out.println("DROPEO: \nentidad " + entidad.dropeo() + "\n Enemy " + enemy.dropeo() + "\n NPC " + npc.dropeo());
-		
-		
 		
 	}
 
