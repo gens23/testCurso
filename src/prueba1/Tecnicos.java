@@ -1,6 +1,6 @@
 package prueba1;
 
-public class Tecnicos extends EmpleadosGenerales{
+public class Tecnicos extends EmpleadosGenerales {
 
 	private int pagoHoraExtra = 100;
 
@@ -8,8 +8,10 @@ public class Tecnicos extends EmpleadosGenerales{
 
         super(nombre, edad);
     }
-
-    public int calcularSalario(int horasExtra) {
-        return getsalarioBase() + (horasExtra * pagoHoraExtra);
+    
+    @Override
+    public int calcularSalario(int compensacion) {
+    	// TODO Auto-generated method stub
+    	return getsalarioBase() + (compensacion * pagoHoraExtra);
     }
 }
