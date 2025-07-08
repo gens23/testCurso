@@ -22,10 +22,6 @@ public class Enviroment {
 		
 		Entidad enemigo = TipoEnemigo.getAleatorio().crearInstancia();
 		
-		//Entidad enemigo = tipoAleatorio.crearInstancia();
-		
-		
-		
 		player.atacar(enemigo);
 		
 		enemigo.atacar(player);
