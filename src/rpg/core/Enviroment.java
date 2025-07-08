@@ -18,8 +18,6 @@ public class Enviroment {
 		
 		player.usarArma(arma);
 		
-		Entidad entidad = TipoEnemigo.SLIME.crearInstancia();
-		
 		Entidad enemigo = TipoEnemigo.getAleatorio().crearInstancia();
 		
 		player.atacar(enemigo);
