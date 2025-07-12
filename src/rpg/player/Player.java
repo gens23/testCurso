@@ -1,20 +1,16 @@
 package rpg.player;
 
+import java.util.Map;
+
 import rpg.Entidad;
+import rpg.player.enums.Atributos;
 
-public class Player extends Entidad{
-
-	@Override
-	public String toString() {
-		return "Player [getNombre()=" + getNombre() + ", getTipoAtaque()=" + getTipoAtaque() + ", getHp()=" + getHp()
-				+ ", getMp()=" + getMp() + ", getNivel()=" + getNivel() + ", isEstaVivo()=" + isEstaVivo()
-				+ ", getDaño()=" + getDaño() + ", getDefensa()=" + getDefensa() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
-
-	public Player(String nombre, int hp, int daño, int defensa, String tipoAtaque) {
-		super(nombre, hp, daño, defensa, tipoAtaque);
+public class Player extends Entidad {
+	
+	public Player(Map<Atributos, Integer> atributos) {
+		super(atributos);
 		// TODO Auto-generated constructor stub
 	}
+
 	
 }

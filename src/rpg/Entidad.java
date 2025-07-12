@@ -1,65 +1,91 @@
 package rpg;
 
-import rpg.arma.Arma;
+import java.util.Map;
+import java.util.Random;
+
+import rpg.player.enums.Atributos;
 
 public class Entidad {
-	private String nombre;
-	private String tipoAtaque;
-	private int hp;
-	private int mp;
-	private int nivel;
-	private boolean estaVivo;
-	private int daño;
-	private int defensa;
+	Random rn = new Random();
 
-	public Entidad(String nombre, int hp, int daño, int defensa, String tipoAtaque) {
+	private Map<Atributos, Integer> atributos;
+	private boolean estaVivo = true;
+
+	public Entidad(Map<Atributos, Integer> atributos) {
 		super();
-		this.nombre = nombre;
-		this.hp = hp;
-		this.daño = daño;
-		this.defensa = defensa;
-		this.tipoAtaque = tipoAtaque;
-		this.estaVivo = true;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getTipoAtaque() {
-		return tipoAtaque;
-	}
-
-	public void setTipoAtaque(String tipoAtaque) {
-		this.tipoAtaque = tipoAtaque;
+		this.atributos = atributos;
 	}
 
 	public int getHp() {
-		return hp;
+		return this.atributos.get(Atributos._HP);
 	}
 
 	public void setHp(int hp) {
-		this.hp = hp;
+		int newHp = this.atributos.get(Atributos._HP) + hp;
+		this.atributos.put(Atributos._HP, newHp);
 	}
 
 	public int getMp() {
-		return mp;
+		return this.atributos.get(Atributos._MP);
 	}
 
 	public void setMp(int mp) {
-		this.mp = mp;
+		int newMp = this.atributos.get(Atributos._MP) + mp;
+		this.atributos.put(Atributos._MP, newMp);
+	}
+	
+	public int getStr() {
+		return this.atributos.get(Atributos._STR);
+	}
+
+	public void setStr(int str) {
+		int newStr = this.atributos.get(Atributos._STR) + str;
+		this.atributos.put(Atributos._STR, newStr);
+	}
+	
+	public int getInt() {
+		return this.atributos.get(Atributos._INT);
+	}
+
+	public void setInt(int _int) {
+		int newInt = this.atributos.get(Atributos._INT) + _int;
+		this.atributos.put(Atributos._INT, newInt);
+	}
+
+	public int getDex() {
+		return this.atributos.get(Atributos._DEX);
+	}
+
+	public void setDex(int dex) {
+		int newDex = this.atributos.get(Atributos._DEX) + dex;
+		this.atributos.put(Atributos._DEX, newDex);
+	}
+	
+	public int getAgi() {
+		return this.atributos.get(Atributos._AGI);
+	}
+
+	public void setAgi(int agi) {
+		int newAGI = this.atributos.get(Atributos._AGI) + agi;
+		this.atributos.put(Atributos._AGI, newAGI);
+	}
+	
+	public int getExp() {
+		return this.atributos.get(Atributos._EXP);
+	}
+
+	public void setExp(int exp) {
+		int newExp = this.atributos.get(Atributos._EXP) + exp;
+		this.atributos.put(Atributos._EXP, newExp);
 	}
 
 	public int getNivel() {
-		return nivel;
+		return this.atributos.get(Atributos._LVL);
 	}
 
 	public void setNivel(int nivel) {
-		this.nivel = nivel;
+		int newLvl = this.atributos.get(Atributos._LVL) + nivel;
+		this.atributos.put(Atributos._LVL, newLvl);
 	}
 
 	public boolean isEstaVivo() {
@@ -71,30 +97,45 @@ public class Entidad {
 	}
 
 	public int getDaño() {
+		int daño = this.atributos.get(Atributos._STR) * 2;
 		return daño;
 	}
 
 	public void setDaño(int daño) {
-		this.daño = daño;
+		int newStr = this.atributos.get(Atributos._STR) + daño;
+		this.atributos.put(Atributos._STR, newStr);
 	}
 
-	public int getDefensa() {
-		return defensa;
+	public void mover(int x, int y) {
+		System.out.println("X: " + x + " Y: " + y);
 	}
 
-	public void setDefensa(int defensa) {
-		this.defensa = defensa;
+	public int dropeo() {
+		System.out.println("Random \n");
+		int probabilidad = rn.nextInt();
+		return probabilidad;
 	}
-	
+
 	public void atacar(Entidad objetivo) {
-        System.out.println(this.getNombre() 
-        		+ " ataca con " + this.getTipoAtaque() 
-        		+ " causando " + this.getDaño() 
-        		+ " de daño a "+ objetivo.getNombre()
-        		+ ".");
-    }
-	
-	public void usarArma(Arma arma) {
-		System.out.println(arma.toString());
+		if (this.estaVivo && objetivo.isEstaVivo()) {
+			
+			System.out.println(this.getClass().getSimpleName() + " tiene STR: " + this.getStr());
+			
+			System.out.println("atacando con " + ( this.getDaño() ) + " de daño");
+			
+			int nuevoHp = objetivo.getHp() - this.getDaño();
+			
+			objetivo.setHp(nuevoHp);
+			
+			System.out.println(objetivo.getClass().getSimpleName() +  " -> HP: " + ( objetivo.getHp() ) + " <-");
+			
+		}
 	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + " [atributos=" + atributos + ", estaVivo=" + estaVivo + "]";
+	}
+	
+	
 }

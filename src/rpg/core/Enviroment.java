@@ -1,37 +1,38 @@
 package rpg.core;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import rpg.Entidad;
-import rpg.arma.Arma;
-import rpg.arma.TipoArma;
-import rpg.player.Guerrero;
 import rpg.player.Player;
-import rpg.mob.Mob;
+import rpg.player.enums.Atributos;
 import rpg.mob.TipoEnemigo;
-import rpg.npc.Npc;
 
 public class Enviroment {
 	public static void main(String[] args) {
 		
-		Arma arma = TipoArma.LANZA.crearInstancia();
+		Map<Atributos, Integer> atributos = new EnumMap<>(Atributos.class);
 		
-		Entidad player = new Player("PJ Test", 100, arma.get_str(), 30, arma.getNombre());
+		atributos.put(Atributos._STR, 2);
+		atributos.put(Atributos._AGI, 4);
+		atributos.put(Atributos._DEX, 6);
+		atributos.put(Atributos._INT, 8);
 		
-		player.usarArma(arma);
+		Entidad player = new Player(atributos);
 		
-		Entidad enemigo = TipoEnemigo.getAleatorio().crearInstancia();
+		System.out.println("Información actual Player: \n" + player.toString());
 		
-		player.atacar(enemigo);
+		System.out.println("________________________________________________________");
 		
-		enemigo.atacar(player);
+		Entidad victima = TipoEnemigo.getAleatorio().crearInstancia();
 		
-		player.setNivel(10);
+		System.out.println("Información actual Enemy: \n" + victima.toString());
+		
+		player.atacar(victima);
+		
+		System.out.println("Nueva información Player: ");
 		
 		System.out.println(player.toString());
 		
-		if(player.getNivel() >= 10) {
-			player = new Guerrero("Guerrero", 200, 1000, 2000, "Boludo");
-		}
-		
-		System.out.println(player.toString());
 	}
 }

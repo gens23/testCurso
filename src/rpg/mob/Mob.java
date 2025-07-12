@@ -1,12 +1,15 @@
 package rpg.mob;
 
+import java.util.Map;
+
 import rpg.Entidad;
+import rpg.player.enums.Atributos;
 
 public class Mob extends Entidad {
 
-	public Mob(String nombre, int hp, int daño, int defensa, String tipoAtaque) {
-		super(nombre, hp, daño, defensa, tipoAtaque);
-		// TODO Auto-generated constructor stub
+	public Mob(Map<Atributos, Integer> atributos) {
+		super(atributos);
 	}
 
+	
 }
